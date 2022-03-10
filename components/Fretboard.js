@@ -2,7 +2,6 @@ import { mayor_scales, minor_scales } from "../assets/variables/scales";
 import { bassFrets, guitarFrets } from "../assets/variables/frets";
 import styles from './../styles/Fretboard.module.scss';
 import { useEffect, useState } from "react";
-// import useSound from 'use-sound';
 import { Howl } from 'howler';
 import {
     Guitar_0_1, Guitar_0_2, Guitar_0_3, Guitar_0_4, Guitar_0_5, Guitar_0_6,
