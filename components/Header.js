@@ -8,7 +8,7 @@ const Header = ({settings, manual}) => {
             <Head>
                 <title>Scales Buddy - Master the Scales on Guitar or Bass</title>
                 <meta name="description" content="Scales & Intervals" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/favicon.jpg" />
             </Head>
             <header className={styles.header}>
                 <div>
