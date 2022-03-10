@@ -1,5 +1,5 @@
 import '../styles/globals.scss'
-import client from './utils/client';
+import client from '../assets/variables/utils/client';
 import { ApolloProvider } from '@apollo/client';
 function MyApp({ Component, pageProps }) {
 
