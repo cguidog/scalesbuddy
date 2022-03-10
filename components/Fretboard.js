@@ -1,6 +1,6 @@
-import { mayor_scales, minor_scales } from "../../assets/variables/scales";
-import { bassFrets, guitarFrets } from "../../assets/variables/frets";
-import styles from './../../styles/Fretboard.module.scss';
+import { mayor_scales, minor_scales } from "../assets/variables/scales";
+import { bassFrets, guitarFrets } from "../assets/variables/frets";
+import styles from './../styles/Fretboard.module.scss';
 import { useEffect, useState } from "react";
 // import useSound from 'use-sound';
 import { Howl } from 'howler';
@@ -33,7 +33,7 @@ import {
     Bass_11_1, Bass_11_2, Bass_11_3, Bass_11_4,
     Bass_12_1, Bass_12_2, Bass_12_3, Bass_12_4,
     Bass_13_1, Bass_13_2, Bass_13_3, Bass_13_4
-} from '../../assets/variables/sounds';
+} from '../assets/variables/sounds';
 
 const Fretboard = ({ activeNotes, settings, note, scale, instrument, position, lowFret, highFret }) => {
     const [frets, setFrets] = useState();

@@ -1,8 +1,8 @@
-import Header from './components/Header';
+import Header from '../components/Header';
 import styles from '../styles/Home.module.scss'
 import { useState, useEffect } from 'react';
 import { mayor_scales, minor_scales } from "../assets/variables/scales";
-import Fretboard from './components/Fretboard';
+import Fretboard from '../components/Fretboard';
 
 export default function Home() {
     const [note, setNote] = useState('');
