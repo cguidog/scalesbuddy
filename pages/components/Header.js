@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import styles from './../../styles/Home.module.scss';
+import Link from 'next/link';
 
 const Header = ({settings, manual}) => {
     return (
@@ -13,9 +14,9 @@ const Header = ({settings, manual}) => {
                 <div>
                     <div />
                     <div className={styles.title_container}>
-                        <a href='/' title='Scales Buddy' className={styles.h1} style={{fontSize : !manual && !settings && '1px', height: !manual && !settings && '0' }}>
-                            scales buddy
-                        </a>
+                        <Link href='/'><a title='Scales Buddy' className={styles.h1} style={{fontSize : !manual && !settings && '1px', height: !manual && !settings && '0' }}>
+                            scales buddy</a>
+                        </Link>
                     </div>
                     <div />
                 </div>
