@@ -6,7 +6,7 @@ const Header = ({settings, manual}) => {
     return (
         <div>
             <Head>
-                <title>Scales Buddy - Master the scales on guitar or bass</title>
+                <title>Scales Buddy - Master the Scales on Guitar or Bass</title>
                 <meta name="description" content="Scales & Intervals" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
