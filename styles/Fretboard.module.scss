@@ -1,0 +1,451 @@
+@import "./variables";
+.fretboard {
+    transition: $transition;
+    max-height: 80vh;
+    overflow: hidden;
+}
+.fretboard_controls {
+    display: flex;
+    flex-direction: row;
+    font-family: "Futura";
+    font-size: 25px;
+    font-weight: 800;
+    margin: 20px 0;
+    .start_container {
+        display: flex;
+        flex-direction: row;
+        flex-basis: 66.66%;
+        @media screen and (max-width: 600px) {
+            flex-direction: column;
+        }
+        .practice_container {
+            font-size: 50px;
+            flex-basis: 100%;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            div {
+                transition: $transition;
+                color: transparent;
+                text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.1);
+                background-color: #1f1f1f;
+                -webkit-background-clip: text;
+                -moz-background-clip: text;
+                background-clip: text;
+                cursor: pointer;
+                @media screen and (max-width: 600px) {
+                    font-size: 25px;
+                    text-transform:uppercase;
+                }
+                &:hover {
+                    background-color: $green;
+                }
+            }
+            div.practicing:hover {
+                background-color: $red;
+            }
+        }
+        .settings_container {
+            display: flex;
+            flex-basis: 100%;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+            .div {
+                display: flex;
+            }
+            .fret_hand {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 10px;
+                span {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 0;
+                    width: 0;
+                    border-radius: 25px;
+                    height: 40px;
+                    width: 40px;
+                    cursor: pointer;
+                    @media screen and (max-width: 600px) {
+                        height: 25px;
+                        width: 25px;
+                    }
+                    svg {
+                        height: 40px;
+                        transition: $transition;
+                        transform: rotateX(0deg) rotateZ(45deg);
+                        @media screen and (max-width: 600px) {
+                            height: 25px;
+                        }
+                        path {
+                            transition: inherit;
+                            fill: $black;
+                        }
+                    }
+                }
+                span.left_hand {
+                    svg {
+                        transform: rotateX(180deg) rotateZ(240deg);
+                    }
+                }
+                &:hover {
+                    span {
+                        svg {
+                            path {
+                                fill: $orange;
+                            }
+                        }
+                    }
+                }
+            }
+            .fret_direction,
+            .fret_hide_notes {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 10px;
+                span {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 0;
+                    width: 0;
+                    height: 40px;
+                    width: 40px;
+                    cursor: pointer;
+                    @media screen and (max-width: 600px) {
+                        height: 25px;
+                        width: 25px;
+                    }
+                    svg {
+                        height: 40px;
+                        transition: $transition;
+                        transform: rotateX(0deg) rotateZ(90deg);
+                        @media screen and (max-width: 600px) {
+                            height: 25px;
+                        }
+                        path {
+                            transition: $transition;
+                            fill: $black;
+                        }
+                    }
+                    svg.hide_notes {
+                        transform: rotateX(0deg) rotateZ(0deg);
+                    }
+                }
+                span.change_fret_direction {
+                    svg {
+                        height: 40px;
+                        transform: rotateX(0deg) rotateZ(270deg);
+                    }
+                }
+                span.hide_notes {
+                    svg {
+                        height: 40px;
+                        transition: $transition;
+                        transform: rotateX(0deg) rotateZ(360deg);
+                    }
+                }
+                &:hover {
+                    span {
+                        svg {
+                            path {
+                                fill: $orange;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .tempo_container {
+        flex-basis: 33.33%;
+        display: flex;
+        flex-direction: column;
+        .title {
+            display: flex;
+            justify-content: center;
+            font-size: 25px;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            .bpm {
+                width: 60px;
+                height: 30px;
+                transition: all 0.1s ease-in-out;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 25px;
+                margin: 10px;
+                color: transparent;
+                text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.1);
+                background-color: #1f1f1f;
+                -webkit-background-clip: text;
+                -moz-background-clip: text;
+                background-clip: text;
+                @media screen and (max-width: 600px) {
+                    color: $black;
+                    width: 30px;
+                    height: 25px;
+                }
+            }
+            .button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: transparent;
+                text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.1);
+                background-color: #1f1f1f;
+                -webkit-background-clip: text;
+                -moz-background-clip: text;
+                background-clip: text;
+                text-align: center;
+                cursor: pointer;
+                margin: 10px;
+                @media screen and (max-width: 600px) {
+                    color: $black;
+                    margin: 5px;
+                }
+            }
+            .up1,
+            .down1 {
+                font-size: 15px;
+            }
+            .down1,
+            .down10 {
+                transform: rotate(180deg);
+                transition: $transition;
+                &:hover {
+                    background-color: $red;
+                    @media screen and (max-width: 600px) {
+                        color: $red;
+                    }
+                }
+            }
+            .up1,
+            .up10 {
+                transition: $transition;
+                &:hover {
+                    background-color: $green;
+                    @media screen and (max-width: 600px) {
+                        color: $green;
+                    }
+                }
+            }
+        }
+    }
+}
+.scale_notes {
+    h3,
+    p {
+        font-family: "Futura";
+        color: transparent;
+        text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.1);
+        background-color: #1f1f1f;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        text-align: center;
+    }
+    h3 {
+        margin: 0;
+        font-size: 30px;
+        font-weight: 800;
+    }
+    div {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        div.note {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            @media screen and (max-width: 600px) {
+                flex-wrap: wrap;
+            }
+            p.note {
+                background-color: $green;
+                background-clip: content-box;
+                margin: 0 5px;
+                box-shadow: 1px 1px 2px #00000077, -1px -1px 2px #00000077;
+                border-radius: 50px;
+                @media screen and (max-width: 600px) {
+                    margin: 5px;
+                }
+                span:first-of-type {
+                    width: 50px;
+                    height: 50px;
+                    display: flex;
+                    margin: 5px;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 22px;
+                    background-color: $yellow;
+                    font-weight: 800;
+                    color: $white;
+                    border-radius: 25px;
+                    box-shadow: 1px 1px 2px #00000077, -1px -1px 2px #00000077;
+                    @media screen and (max-width: 600px) {
+                        width: 30px;
+                        height: 30px;
+                        font-size: 15px;
+                        margin: 2px;
+                    }
+                }
+                span:nth-of-type(2) {
+                    font-size: 22px;
+                    font-weight: 800;
+                    color: $white;
+                    @media screen and (max-width: 600px) {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+}
+.fret_board {
+    display: flex;
+    flex-direction: row;
+    font-family: "Futura";
+    max-width: 1300px;
+    justify-content: space-between;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.fret {
+    flex-basis: 100%;
+    flex-direction: column;
+    display: inherit;
+    .fret_number {
+        margin: 20px 0;
+        font-size: 30px;
+        color: transparent;
+        text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.1);
+        background-color: #1f1f1f;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        @media screen and (max-width: 600px) {
+            font-size: 22px;
+            font-weight: 800;
+        }
+    }
+}
+.open_fret span.note, .open_fret span.hidden_note {
+    opacity: 1!important;
+    font-weight: 800!important;
+    font-size: 18px!important;
+}
+.fret_hidden {
+    @media screen and (max-width: 600px) {
+        display: none!important;
+    }
+}
+
+.position {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    position: relative;
+    border-right: 2px solid $black;
+    @media screen and (max-width: 600px) {
+        height: 40px;
+    }
+    .string {
+        transition: $transition;
+        position: absolute;
+        height: 4px;
+        background-color: $black;
+        opacity: 0.1;
+        width: 100%;
+        z-index: 0;
+    }
+    span.note {
+        color: transparent;
+        text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.1);
+        background-color: $black;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        font-size: 18px;
+        transition: $transition;
+        position: absolute;
+        text-align: center;
+        margin: auto;
+        z-index: 2;
+        font-weight: 300;
+        opacity: 1;
+        transition: opacity 0.2s ease-in-out;
+    }
+    span.hidden_note {
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+    }
+    .marker {
+        transition: $transition;
+        z-index: 1;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-radius: 25px;
+        box-shadow: none;
+        background-color: rgba(255, 255, 255, 0);
+        margin: auto;
+    }
+}
+.selected {
+    span.note {
+        color: transparent;
+        font-size: 22px;
+        background-color: $white;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        font-weight: 800;
+        opacity: 1;
+        transition: opacity 0.2s ease-in-out;
+        @media screen and (max-width: 600px) {
+            font-size: 16px;
+        }
+    }
+    span.hidden_note {
+        color: transparent;
+        font-size: 22px;
+        background-color: $white;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        font-weight: 800;
+        opacity: 1;
+        z-index: 2;
+        transition: opacity 0.2s ease-in-out;
+        @media screen and (max-width: 600px) {
+            font-size: 16px;
+        }
+    }
+    .marker {
+        z-index: 1;
+        position: absolute;
+        width: 45px;
+        height: 45px;
+        border-radius: 25px;
+        background-color: $red;
+        box-shadow: 1px 1px 2px #00000077, -1px -1px 2px #00000077;
+        margin: auto;
+        @media screen and (max-width: 600px) {
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+.hidden {
+    opacity: 0;
+}
