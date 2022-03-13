@@ -9,6 +9,13 @@ const Header = ({settings, manual}) => {
                 <title>Scales Buddy - Master the Scales on Guitar or Bass</title>
                 <meta name="description" content="Scales & Intervals" />
                 <link rel="icon" href="/favicon.jpg" />
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-M31XTH284N"></script>
+<script dangerouslySetInnerHTML={{
+__html:`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-M31XTH284N');`
+}}/>
             </Head>
             <header className={styles.header}>
                 <div>
