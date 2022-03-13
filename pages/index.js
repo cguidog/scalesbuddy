@@ -76,12 +76,12 @@ export default function Home() {
                         <div className={styles.instrument_selector}>
                             <div onClick={() => setInstrument('bass')} className={instrument === 'bass' ? `${styles['instrument']} ${styles['instrument']} ${styles['instrumentSelected']}` : `${styles['instrument']}`}>
                                 <div>
-                                    <h3 className={styles.h1}>Bass</h3>
+                                    <h3 id='bass' className={styles.h1}>Bass</h3>
                                 </div>
                             </div>
                             <div onClick={() => setInstrument('guitar')} className={instrument === 'guitar' ? `${styles['instrument']} ${styles['instrument']} ${styles['instrumentSelected']}` : `${styles['instrument']}`}>
                                 <div>
-                                    <h3 className={styles.h1}>Guitar</h3>
+                                    <h3 id='guitar' className={styles.h1}>Guitar</h3>
                                 </div>
                             </div>
                         </div>
