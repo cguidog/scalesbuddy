@@ -295,7 +295,7 @@ const Fretboard = ({ activeNotes, settings, note, scale, instrument, position, l
                     </div>
                     <div className={styles.start_container}>
                         <div className={styles.practice_container}>
-                            <div className={practice ? styles.practicing : ''} onClick={runPractice}>{!practice ? 'Start ' : 'Stop '}</div>
+                            <div id='start_practice' className={practice ? styles.practicing : ''} onClick={runPractice}>{!practice ? 'Start' : 'Stop'}</div>
                         </div>
                         <div className={styles.settings_container}>
                             <div className={styles.fret_hand}>
