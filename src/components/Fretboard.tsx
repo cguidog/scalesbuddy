@@ -43,7 +43,6 @@ const Fretboard = (props: FretboardType) => {
     }
     fetchScales();
   }, [props])
-  console.log(notePositions);
   useEffect(() => {
     const fetchSounds = async () => {
       setLoading(true);
