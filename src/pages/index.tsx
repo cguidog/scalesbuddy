@@ -2,7 +2,6 @@ import { useState } from 'react'
 import Fretboard from '@/components/Fretboard'
 import { Archivo_Black } from 'next/font/google';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 const archivo_black = Archivo_Black({ subsets: ['latin'], weight: '400' });
 const Home = () => {
@@ -16,7 +15,6 @@ const Home = () => {
   const [note, setNote] = useState<'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | null>(null);
   const [position, setPosition] = useState<'first' | 'second' | null>(null)
   const [scale, setScale] = useState<'major' | 'minor' | null>(null);
-  const [settings, setSettings] = useState<boolean>(true);
   const [practice, setPractice] = useState<boolean>(false);
 
   const handleSelected = () => {
