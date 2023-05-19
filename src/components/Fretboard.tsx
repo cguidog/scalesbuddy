@@ -136,7 +136,7 @@ const Fretboard = (props: FretboardType) => {
   return (
     <div className='flex flex-col mb-8'>
       <div className='mb-2 md:mb-4 text-center'>
-        <button type='button' disabled={loading || notePositions.length === 0} className={`${practice ? 'bg-red-700 hover:bg-red-500' : 'bg-emerald-700 hover:bg-emerald-500'} m-auto p-2 rounded-sm shadow-equal-sm shadow-black text-slate-50 text-lg md:text-2xl transition-all ease-in-out duration-150 w-full md:w-96 active:scale-95 active:shadow-none disabled:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-60  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4`} onClick={handlePractice}>{loading || notePositions.length === 0 ? 'Loading' : practice ? 'Stop Practice' : 'Start Practice'}</button>
+        <button id='start_practice' type='button' disabled={loading || notePositions.length === 0} className={`${practice ? 'bg-red-700 hover:bg-red-500' : 'bg-emerald-700 hover:bg-emerald-500'} m-auto p-2 rounded-sm shadow-equal-sm shadow-black text-slate-50 text-lg md:text-2xl transition-all ease-in-out duration-150 w-full md:w-96 active:scale-95 active:shadow-none disabled:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-60  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4`} onClick={handlePractice}>{loading || notePositions.length === 0 ? 'Loading' : practice ? 'Stop Practice' : 'Start Practice'}</button>
       </div>
       <div className='flex flex-wrap gap-1 md:gap-6 justify-center my-2 md:my-4'>
         {intervals && intervals.map((interval, index) =>
