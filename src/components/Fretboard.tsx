@@ -14,7 +14,7 @@ type FretboardType = {
 }
 
 const Fretboard = (props: FretboardType) => {
-  const {instrument, note, position, scale, settings, handleSettings} = props;
+  const { instrument, note, position, scale, settings, handleSettings } = props;
   const [bpm, setBpm] = useState<number>(80);
   const bpmSteps: number[] = [-1, -10, 10, 1];
   const [currentNote, setCurrentNote] = useState<[Interval, Note] | []>([]);
@@ -135,35 +135,7 @@ const Fretboard = (props: FretboardType) => {
 
   return (
     <div className='flex flex-col mb-8'>
-      <div className='bg-gray-200 flex flex-wrap md:flex-row justify-between m-auto p-2 md:p-4 rounded-sm min-w-full lg:min-w-fit w-2/3'>
-        <div className='flex w-1/2 md:flex-1 flex-col gap-1 md:gap-4 text-center'>
-          <h3 className='text-lg md:text-2xl'>BPM</h3>
-          <span className='text-lg md:text-2xl' tabIndex={0} aria-label={`Current bpm: ${bpm}`}>{bpm}</span>
-          <div className='flex gap-2 md:gap-4'>
-            {bpmSteps.map((step) => <button key={bpmSteps.indexOf(step)} disabled={bpm + step > 280 || bpm + step < 10 || practice ? true : false} type='button' aria-label={`${step < 0 ? 'Decrease' : 'Increase'} bpm by ${step}`} className={`${step > 0 ? 'active:bg-emerald-700' : 'active:bg-red-700'} bg-gray-500 flex h-11 w-11 items-center justify-center m-auto rounded-sm shadow-equal-sm shadow-black text-slate-50 text-lg md:text-2xl transition-all ease-in-out duration-150 active:scale-95 active:shadow-none disabled:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-60  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4`} onClick={() => handleBpm(step)}>
-              <span className={`${step > 0 ? step === 1 ? 'scale-75 ' : '' : step === -1 ? 'scale-75 rotate-180 ' : 'rotate-180'} flex`}>▲</span>
-            </button>)
-            }
-          </div>
-        </div>
-        <div className='flex w-1/2 md:flex-1 flex-col gap-1 md:gap-4 text-center'>
-          <h3 className='text-lg md:text-2xl'>Volume</h3>
-          <span className='text-lg md:text-2xl' tabIndex={0} aria-label={`Current volume level: ${volume * 100}`}>{volume * 100}</span>
-          <div className='flex gap-2 md:gap-4 justify-center'>
-            <button type='button' aria-label='Decrease volume by 10%' disabled={volume === 0 && true} className='bg-gray-500 flex h-11 w-11 items-center justify-center md:m-auto rounded-sm shadow-equal-sm shadow-black text-slate-50 text-lg md:text-2xl transition-all ease-in-out duration-150 active:bg-red-700 active:scale-95 active:shadow-none disabled:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-60  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4' onClick={() => handleVolume(-0.1)}><span className='rotate-180'>▲</span></button>
-            <button type='button' aria-label='Increase volume by 10%' disabled={volume === 1 && true} className='bg-gray-500 flex h-11 w-11 items-center justify-center md:m-auto rounded-sm shadow-equal-sm shadow-black text-slate-50 text-lg md:text-2xl transition-all ease-in-out duration-150 active:bg-emerald-700 active:scale-95 active:shadow-none disabled:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-60  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4' onClick={() => handleVolume(0.1)}><span>▲</span></button>
-          </div>
-        </div>
-        <div className='flex flex-1 flex-col gap-1 md:gap-4 text-center justify-between'>
-          <h3 className='text-lg md:text-2xl'>Fret Direction</h3>
-          <span className='text-lg md:text-2xl' tabIndex={0} aria-label={`Current fret direction: ${!reverseFretboard ? 'Left to Right' : 'Right to Left'}`}>{!reverseFretboard ? 'Left to Right' : 'Right to Left'}</span>
-          <div className='flex gap-2 md:gap-4 justify-center'>
-            <button type='button' aria-label='Set fretboard direction left to right' disabled={!reverseFretboard} className='bg-gray-500 flex h-11 w-11 items-center justify-center md:m-auto rounded-sm shadow-equal-sm shadow-black text-slate-50 text-lg md:text-2xl transition-all ease-in-out duration-150 active:bg-emerald-700 active:scale-95 active:shadow-none disabled:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-60  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4' onClick={() => setReverseFreboard(false)}><span className='rotate-90'>▲</span></button>
-            <button type='button' aria-label='Set fretboard direction right to left' disabled={reverseFretboard} className='bg-gray-500 flex h-11 w-11 items-center justify-center md:m-auto rounded-sm shadow-equal-sm shadow-black text-slate-50 text-lg md:text-2xl transition-all ease-in-out duration-150 active:bg-emerald-700 active:scale-95 active:shadow-none disabled:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-60  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4' onClick={() => setReverseFreboard(true)}><span className='-rotate-90'>▲</span></button>
-          </div>
-        </div>
-      </div>
-      <div className='my-2 md:my-4 text-center'>
+      <div className='mb-2 md:mb-4 text-center'>
         <button type='button' disabled={loading || notePositions.length === 0} className={`${practice ? 'bg-red-700 hover:bg-red-500' : 'bg-emerald-700 hover:bg-emerald-500'} m-auto p-2 rounded-sm shadow-equal-sm shadow-black text-slate-50 text-lg md:text-2xl transition-all ease-in-out duration-150 w-full md:w-96 active:scale-95 active:shadow-none disabled:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-60  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4`} onClick={handlePractice}>{loading || notePositions.length === 0 ? 'Loading' : practice ? 'Stop Practice' : 'Start Practice'}</button>
       </div>
       <div className='flex flex-wrap gap-1 md:gap-6 justify-center my-2 md:my-4'>
@@ -208,6 +180,34 @@ const Fretboard = (props: FretboardType) => {
               }
             })}
           </div>)}
+      </div>
+      <div className='bg-gray-200 flex flex-wrap md:flex-row justify-between m-auto p-2 md:p-4 rounded-sm min-w-full lg:min-w-fit w-2/3'>
+        <div className='flex w-1/2 md:flex-1 flex-col gap-1 md:gap-4 text-center'>
+          <h3 className='text-lg md:text-2xl'>BPM</h3>
+          <span className='text-lg md:text-2xl' tabIndex={0} aria-label={`Current bpm: ${bpm}`}>{bpm}</span>
+          <div className='flex gap-2 md:gap-4'>
+            {bpmSteps.map((step) => <button key={bpmSteps.indexOf(step)} disabled={bpm + step > 280 || bpm + step < 10 || practice ? true : false} type='button' aria-label={`${step < 0 ? 'Decrease' : 'Increase'} bpm by ${step}`} className={`${step > 0 ? 'active:bg-emerald-700' : 'active:bg-red-700'} bg-gray-500 flex h-11 w-11 items-center justify-center m-auto rounded-sm shadow-equal-sm shadow-black text-slate-50 text-lg md:text-2xl transition-all ease-in-out duration-150 active:scale-95 active:shadow-none disabled:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-60  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4`} onClick={() => handleBpm(step)}>
+              <span className={`${step > 0 ? step === 1 ? 'scale-75 ' : '' : step === -1 ? 'scale-75 rotate-180 ' : 'rotate-180'} flex`}>▲</span>
+            </button>)
+            }
+          </div>
+        </div>
+        <div className='flex w-1/2 md:flex-1 flex-col gap-1 md:gap-4 text-center'>
+          <h3 className='text-lg md:text-2xl'>Volume</h3>
+          <span className='text-lg md:text-2xl' tabIndex={0} aria-label={`Current volume level: ${volume * 100}`}>{volume * 100}</span>
+          <div className='flex gap-2 md:gap-4 justify-center'>
+            <button type='button' aria-label='Decrease volume by 10%' disabled={volume === 0 && true} className='bg-gray-500 flex h-11 w-11 items-center justify-center md:m-auto rounded-sm shadow-equal-sm shadow-black text-slate-50 text-lg md:text-2xl transition-all ease-in-out duration-150 active:bg-red-700 active:scale-95 active:shadow-none disabled:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-60  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4' onClick={() => handleVolume(-0.1)}><span className='rotate-180'>▲</span></button>
+            <button type='button' aria-label='Increase volume by 10%' disabled={volume === 1 && true} className='bg-gray-500 flex h-11 w-11 items-center justify-center md:m-auto rounded-sm shadow-equal-sm shadow-black text-slate-50 text-lg md:text-2xl transition-all ease-in-out duration-150 active:bg-emerald-700 active:scale-95 active:shadow-none disabled:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-60  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4' onClick={() => handleVolume(0.1)}><span>▲</span></button>
+          </div>
+        </div>
+        <div className='flex flex-1 flex-col gap-1 md:gap-4 text-center justify-between'>
+          <h3 className='text-lg md:text-2xl'>Fret Direction</h3>
+          <span className='text-lg md:text-2xl' tabIndex={0} aria-label={`Current fret direction: ${!reverseFretboard ? 'Left to Right' : 'Right to Left'}`}>{!reverseFretboard ? 'Left to Right' : 'Right to Left'}</span>
+          <div className='flex gap-2 md:gap-4 justify-center'>
+            <button type='button' aria-label='Set fretboard direction left to right' disabled={!reverseFretboard} className='bg-gray-500 flex h-11 w-11 items-center justify-center md:m-auto rounded-sm shadow-equal-sm shadow-black text-slate-50 text-lg md:text-2xl transition-all ease-in-out duration-150 active:bg-emerald-700 active:scale-95 active:shadow-none disabled:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-60  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4' onClick={() => setReverseFreboard(false)}><span className='rotate-90'>▲</span></button>
+            <button type='button' aria-label='Set fretboard direction right to left' disabled={reverseFretboard} className='bg-gray-500 flex h-11 w-11 items-center justify-center md:m-auto rounded-sm shadow-equal-sm shadow-black text-slate-50 text-lg md:text-2xl transition-all ease-in-out duration-150 active:bg-emerald-700 active:scale-95 active:shadow-none disabled:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-60  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4' onClick={() => setReverseFreboard(true)}><span className='-rotate-90'>▲</span></button>
+          </div>
+        </div>
       </div>
     </div>
   )
