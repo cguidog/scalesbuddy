@@ -69,7 +69,7 @@ const Home = () => {
           { allSelected && <div className='flex flex-col gap-4 items-center'>
             <h3 className='m-auto text-center text-lg md:text-2xl'>{`${note?.toUpperCase()} ${scale}`} scale - <span className='capitalize'>{position}</span> position - <span className='capitalize'>{instrument}</span></h3>
           </div>}
-          {note && scale && instrument && position && <button disabled={settings} className={`${allSelected? 'bg-red-700' : 'bg-emerald-700'} h-fit w-28 m-auto px-4 py-2 rounded-sm shadow-equal-sm shadow-black text-slate-50 transition-all ease-in-out duration-150 active:scale-95 active:shadow-none disabled:cursor-not-allowed disabled:opacity-80  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4`} onClick={()=>handleSelected()}>{allSelected ? 'Edit' : 'Continue'}</button>}
+          {note && scale && instrument && position && <button disabled={settings} className={`${allSelected? 'bg-red-700' : 'bg-emerald-700'} h-fit w-28 m-auto px-4 py-2 rounded-sm shadow-equal-sm shadow-black text-slate-50 transition-all ease-in-out duration-150 active:scale-95 active:shadow-none disabled:cursor-not-allowed disabled:opacity-60  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4`} onClick={()=>handleSelected()}>{allSelected ? 'Edit' : 'Continue'}</button>}
         </div>
         {allSelected && <Fretboard settings={settings} handleSettings={handleSettings} note={note} scale={scale} instrument={instrument} position={position} />}
       </main>
