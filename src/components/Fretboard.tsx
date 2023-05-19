@@ -49,7 +49,6 @@ const Fretboard = (props: FretboardType) => {
       setLoading(true);
       const response = await fetch(`/api/sounds?notePositions=${encodeURIComponent(JSON.stringify(notePositions))}&instrument=${instrument}`);
       const data: Sounds = await response.json();
-      console.log(data);
       const cached_sounds = await loadSounds(data.soundUrls);
       cached_sounds && setSounds(cached_sounds);
       setPracticeReady(true);
@@ -67,7 +66,7 @@ const Fretboard = (props: FretboardType) => {
   useEffect(() => {
     if (practiceReady) {
       let newInterval: NodeJS.Timer;
-      if (sounds && practice) {
+      if (sounds.length > 0 && practice) {
         let index = 0;
         playNote(index);
         index++;
