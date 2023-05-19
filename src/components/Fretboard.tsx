@@ -9,18 +9,19 @@ type FretboardType = {
   note: Note | null,
   position: 'first' | 'second' | null,
   scale: 'major' | 'minor' | null,
-  practice: boolean,
-  handlePractice: (value: boolean) => void,
+  settings: boolean,
+  handleSettings: (value: boolean) => void,
 }
 
 const Fretboard = (props: FretboardType) => {
-  const {instrument, note, position, scale, practice, handlePractice} = props;
+  const {instrument, note, position, scale, settings, handleSettings} = props;
   const [bpm, setBpm] = useState<number>(80);
   const bpmSteps: number[] = [-1, -10, 10, 1];
   const [currentNote, setCurrentNote] = useState<[Interval, Note] | []>([]);
   const [intervals, setIntervals] = useState<[Interval, Note][] | []>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [notePositions, setNotePositions] = useState<[FretX, FretY][] | []>([]);
+  const [practice, setPractice] = useState<boolean>(false); // Starts practice once sounds are ready.
   const [practiceInterval, setPracticeInterval] = useState<NodeJS.Timer | null>(null);
   const [practiceReady, setPracticeReady] = useState<boolean>(false); // Starts practice once sounds are ready.
   const [reverseFretboard, setReverseFreboard] = useState<boolean>(false);
@@ -42,12 +43,13 @@ const Fretboard = (props: FretboardType) => {
       }
     }
     fetchScales();
-  }, [props])
+  }, [instrument, note, scale, position])
   useEffect(() => {
     const fetchSounds = async () => {
       setLoading(true);
       const response = await fetch(`/api/sounds?notePositions=${encodeURIComponent(JSON.stringify(notePositions))}&instrument=${instrument}`);
       const data: Sounds = await response.json();
+      console.log(data);
       const cached_sounds = await loadSounds(data.soundUrls);
       cached_sounds && setSounds(cached_sounds);
       setPracticeReady(true);
@@ -111,8 +113,9 @@ const Fretboard = (props: FretboardType) => {
       setBpm(bpm + value);
     }
   }
-  const handleFretPractice = () => {
-    handlePractice(!practice);
+  const handlePractice = () => {
+    setPractice(!practice);
+    handleSettings(!settings);
   }
 
   const handleVolume = (value: number) => {
@@ -162,7 +165,7 @@ const Fretboard = (props: FretboardType) => {
         </div>
       </div>
       <div className='my-2 md:my-4 text-center'>
-        {intervals && notePositions && <button type='button' disabled={loading} className={`${practice ? 'bg-red-700 hover:bg-red-500' : 'bg-emerald-700 hover:bg-emerald-500'} m-auto p-2 rounded-sm shadow-equal-sm shadow-black text-slate-50 text-lg md:text-2xl transition-all ease-in-out duration-150 w-full md:w-96 active:scale-95 active:shadow-none disabled:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-80  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4`} onClick={handleFretPractice}>{loading ? 'Loading' : practice ? 'Stop Practice' : 'Start Practice'}</button>}
+        {intervals && notePositions && <button type='button' disabled={loading} className={`${practice ? 'bg-red-700 hover:bg-red-500' : 'bg-emerald-700 hover:bg-emerald-500'} m-auto p-2 rounded-sm shadow-equal-sm shadow-black text-slate-50 text-lg md:text-2xl transition-all ease-in-out duration-150 w-full md:w-96 active:scale-95 active:shadow-none disabled:bg-gray-500 disabled:cursor-not-allowed disabled:opacity-80  disabled:scale-100 disabled:shadow-none focus-visible:outline focus-visible:outline-black focus-visible:outline-4`} onClick={handlePractice}>{loading ? 'Loading' : practice ? 'Stop Practice' : 'Start Practice'}</button>}
       </div>
       <div className='flex flex-wrap gap-1 md:gap-6 justify-center my-2 md:my-4'>
         {intervals && intervals.map((interval, index) =>
